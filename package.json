@@ -1,6 +1,6 @@
 {
   "name": "@webreflection/php",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Run PHP right in the browser",
   "main": "./es.js",
   "scripts": {
