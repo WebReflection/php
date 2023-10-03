@@ -1,0 +1,32 @@
+{
+  "name": "@webreflection/php",
+  "version": "0.0.0",
+  "description": "Run PHP right in the browser",
+  "main": "./es.js",
+  "scripts": {
+    "build": "npm run rollup:es && npm run rollup:index && npm run test",
+    "rollup:es": "rollup --config rollup/es.config.js",
+    "rollup:index": "rollup --config rollup/index.config.js"
+  },
+  "keywords": ["php-wasm", "esm"],
+  "author": "Oraoto <oraoto@outlook.com>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.4",
+    "@rollup/plugin-node-resolve": "^15.2.1",
+    "@rollup/plugin-terser": "^0.4.3",
+    "rollup": "^3.29.4"
+  },
+  "module": "./es.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./es.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "unpkg": "./es.js",
+  "dependencies": {
+    "php-wasm": "^0.0.7"
+  }
+}
