@@ -1,3 +1,8 @@
-import { PhpWeb } from 'php-wasm/PhpWeb.js';
+import { PhpBase } from 'php-wasm/PhpBase.js';
+import { PhpBinary } from 'php-wasm/php-web.js';
 
-export { PhpWeb };
+export class PhpWeb extends PhpBase {
+  constructor(...args) {
+    super(PhpBinary, ...args);
+  }
+}
