@@ -5,25 +5,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>php</title>
   <script type="module">
-  import(
-    /^(?:localhost|[::1]|127(?:.d+){3})$/.test(location.hostname) ?
-    '../index.js' :
-    'https://unpkg.com/php?module'
-  )
-  .then(({ PhpWeb }) => {
+    import { PhpWeb } from '../index.js';
     const php = new PhpWeb({
-      locateFile: () => `https://cdn.jsdelivr.net/npm/php-wasm@0.0.7/php-web.wasm`
-    });
-    php.addEventListener('output', (event) => {
-	    console.log(event.detail);
+      print: console.log,
+      printErr: console.error,
+      locateFile: () => '../php-web.wasm'
     });
     php.addEventListener('ready', () => {
-      console.log('ready');
-      php.run('<?php echo "Hello, world!";').then(retVal => {
-        php.run('<?php echo "Hello, again!";');
+      php.run('<?php echo "Hello, world!";').then(() => {
+        php.run(`<?php vrzno_eval('document.body.textContent = "Hello, world!"');`);
       });
     });
-  });
   </script>
 </head>
 <body></body>
