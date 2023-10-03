@@ -7,11 +7,22 @@
   <script type="module">
   import(
     /^(?:localhost|[::1]|127(?:.d+){3})$/.test(location.hostname) ?
-    '../esm/index.js' :
+    '../index.js' :
     'https://unpkg.com/php?module'
   )
-  .then((module) => {
-    console.log(module);
+  .then(({ PhpWeb }) => {
+    const php = new PhpWeb({
+      locateFile: () => `https://cdn.jsdelivr.net/npm/php-wasm@0.0.7/php-web.wasm`
+    });
+    php.addEventListener('output', (event) => {
+	    console.log(event.detail);
+    });
+    php.addEventListener('ready', () => {
+      console.log('ready');
+      php.run('<?php echo "Hello, world!";').then(retVal => {
+        php.run('<?php echo "Hello, again!";');
+      });
+    });
   });
   </script>
 </head>
