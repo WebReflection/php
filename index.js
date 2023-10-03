@@ -1,3 +1,7 @@
+function getDefaultExportFromCjs (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+
 var PhpBase$1 = {};
 
 var UniqueIndex$1 = {};
@@ -229,10 +233,11 @@ var phpWeb = {exports: {}};
 } (phpWeb));
 
 var phpWebExports = phpWeb.exports;
+var PhpBinary = /*@__PURE__*/getDefaultExportFromCjs(phpWebExports);
 
 class PhpWeb extends PhpBase_2 {
   constructor(...args) {
-    super(phpWebExports.PhpBinary, ...args);
+    super(PhpBinary, ...args);
   }
 }
 
